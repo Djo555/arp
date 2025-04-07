@@ -1,3 +1,16 @@
 body {
-    background-color: skyblue;
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+
+h1, h2 {
+    font-family: Open Sans Condensed, sans-serif;
+}
+
+.orange {
+    color: #e7581a;
+}
+
+.bleue {
+    color: #00437a;
 }

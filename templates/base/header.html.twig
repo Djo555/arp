@@ -7,30 +7,73 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor04">
-      <ul class="navbar-nav w-50 ms-auto justify-content-between">
+      <ul class="navbar-nav w-75 ms-auto justify-content-between">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
+         <a class="nav-link {{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}" href="{{ path('app_home') }}">ACCUEIL</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">LE CABINET
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">PARTICULIERS</a>
+          <div class="dropdown-menu d-flex w-100 justify-content-between flex-row">
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Divorce</a></li>
+                    <li><a class="dropdown-item" href="#">Garde d'enfant</a></li>
+                    <li><a class="dropdown-item" href="#">Pension alimentaire</a></li>
+                </ul>
+            </div>
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Droit du travail</a></li>
+                    <li><a class="dropdown-item" href="#">Enquête de moralité</a></li>
+                    <li><a class="dropdown-item" href="#">Enquête de solvabilité</a></li>
+                </ul>
+            </div>
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Recherches de personne disparue</a></li>
+                </ul>
+            </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item"> 
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+ <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ENTREPRISES</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+            </div>
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+            </div>
+            <div class="col"> 
+                <ul> 
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+            </div>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">TARIFS
+          </a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">CONTACTS
+          </a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">ARTICLES
+          </a>
         </li>
       </ul>
     </div>

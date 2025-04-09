@@ -20,3 +20,23 @@ h1, h2 {
     width: 120px;
     height: auto;
 }
+
+a.nav-link{
+    color: #00437a;
+    font-weight: bold;
+
+}
+
+a.nav-link.active{
+    color: #e7581a !important;
+}
+
+a.nav-link:hover{
+    color: #e7581a;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

@@ -47,7 +47,7 @@ ul{
 
     display: none; /* Initially hidden */
   
-    position: absolute;
+    position: fixed;
   
     top: calc(100% + 1px); /* Position it below the navbar */
   
@@ -74,6 +74,8 @@ ul{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
   
     transition: all 0.3s ease; /* Smooth transition for dropdown */
+
+    gap:1rem;
   
   }
   
@@ -82,7 +84,7 @@ ul{
   
   .custom-dropdown-menu.active {
   
-    display: block;
+    display: flex;
   
   }
   

@@ -40,3 +40,111 @@ ul{
     padding: 0;
     margin: 0;
 }
+
+/* Custom dropdown menu styles */
+
+.custom-dropdown-menu {
+
+    display: none; /* Initially hidden */
+  
+    position: absolute;
+  
+    top: calc(100% + 1px); /* Position it below the navbar */
+  
+    left: 0;
+  
+    width: 100vw; /* Full width of the viewport */
+  
+    background-color: black; /* Black background */
+  
+    color: white; /* White text */
+  
+    border: none; /* No border */
+  
+    border-radius: 0; /* No border radius */
+  
+    padding: 1rem; /* Padding for spacing */
+  
+    z-index: 1050; /* Ensure it appears above other elements */
+  
+    list-style-type: none; /* Remove default list styles */
+  
+    margin: 0; /* Remove default margin */
+  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  
+    transition: all 0.3s ease; /* Smooth transition for dropdown */
+  
+  }
+  
+  
+  /* Show the dropdown menu when active */
+  
+  .custom-dropdown-menu.active {
+  
+    display: block;
+  
+  }
+  
+  
+  /* Style dropdown items */
+  
+  .custom-dropdown-menu .dropdown-item {
+  
+    color: white;
+  
+  }
+  
+  
+  .custom-dropdown-menu .dropdown-item:hover,
+  
+  .custom-dropdown-menu .dropdown-item:focus {
+  
+    background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
+  
+    color: white;
+  
+  }
+  
+  
+  /* Optional: Style the dropdown divider */
+  
+  .custom-dropdown-menu .dropdown-divider {
+  
+    border-color: rgba(255, 255, 255, 0.2);
+  
+  }
+  
+  
+  /* Triangle blanc orienté vers le bas, attaché au <li> activé */
+  
+  .navbar-nav .nav-item.active::after {
+  
+    content: ""; /* Triangle vide */
+  
+    position: absolute;
+  
+    bottom: 0; /* Positionné à la limite inférieure du <li> */
+  
+    left: 50%; /* Centré par rapport au <li> */
+  
+    transform: translateX(-50%); /* Ajustement pour centrer */
+  
+    border-left: 10px solid transparent; /* Côté gauche du triangle */
+  
+    border-right: 10px solid transparent; /* Côté droit du triangle */
+  
+    border-top: 10px solid white; /* Côté supérieur du triangle (orienté vers le bas) */
+  
+    z-index: 1060; /* Au-dessus de la barre de navigation */
+  
+  }
+  
+  
+  /* Assurez-vous que le <li> activé est positionné relativement */
+  
+  .navbar-nav .nav-item {
+  
+    position: relative; /* Nécessaire pour positionner le triangle par rapport au <li> */
+  
+  }

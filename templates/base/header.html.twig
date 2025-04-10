@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-white">
-  <div class="container">
+  <div class="container mx-auto" style=" max-width:1440px;">
     <a class="navbar-brand" href="#">
     <img class="logo" src="{{ asset('build/images/logo1.png') }}" alt="BenOps">
     </a>
@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor04">
-      <ul class="navbar-nav w-75 ms-auto justify-content-between">
+      <ul class="navbar-nav w-100 ms-auto justify-content-between">
         <li class="nav-item">
          <a class="nav-link {{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}" href="{{ path('app_home') }}">ACCUEIL</a>
         </li>
@@ -15,53 +15,8 @@
           <a class="nav-link" href="#">LE CABINET
           </a>
         </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">PARTICULIERS</a>
-          <div class="dropdown-menu d-flex w-100 justify-content-between flex-row">
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Divorce</a></li>
-                    <li><a class="dropdown-item" href="#">Garde d'enfant</a></li>
-                    <li><a class="dropdown-item" href="#">Pension alimentaire</a></li>
-                </ul>
-            </div>
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Droit du travail</a></li>
-                    <li><a class="dropdown-item" href="#">Enquête de moralité</a></li>
-                    <li><a class="dropdown-item" href="#">Enquête de solvabilité</a></li>
-                </ul>
-            </div>
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Recherches de personne disparue</a></li>
-                </ul>
-            </div>
-        </li>
- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ENTREPRISES</a>
-          <div class="dropdown-menu">
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                </ul>
-            </div>
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                </ul>
-            </div>
-            <div class="col"> 
-                <ul> 
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                </ul>
-            </div>
+       <li class="nav-item active">
+          <a class="nav-link custom-dropdown-toggle" data-dropdown="dropdown1" href="#" role="button" aria-haspopup="true" aria-expanded="false">PARTICULIERS</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" href="#">TARIFS
@@ -78,4 +33,25 @@
       </ul>
     </div>
   </div>
+  <ul class="custom-dropdown-menu justify-content-between flex-row" id="dropdown1" >
+    <div class="col"> 
+        <ul> 
+            <li><a class="dropdown-item" href="#">Divorce</a></li>
+            <li><a class="dropdown-item" href="#">Garde d'enfant</a></li>
+            <li><a class="dropdown-item" href="#">Pension alimentaire</a></li>
+        </ul>
+    </div>
+    <div class="col"> 
+        <ul> 
+            <li><a class="dropdown-item" href="#">Droit du travail</a></li>
+            <li><a class="dropdown-item" href="#">Enquête de moralité</a></li>
+            <li><a class="dropdown-item" href="#">Enquête de solvabilité</a></li>
+        </ul>
+    </div>
+    <div class="col"> 
+        <ul> 
+            <li><a class="dropdown-item" href="#">Recherches de personne disparue</a></li>
+        </ul>
+    </div>
+    </ul>
 </nav>

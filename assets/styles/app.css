@@ -1,7 +1,5 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1440px;
-    margin: 0 auto;
   }
 
 h1, h2 {
@@ -47,7 +45,7 @@ ul{
 
     display: none; /* Initially hidden */
   
-    position: fixed;
+    position: absolute;
   
     top: calc(100% + 1px); /* Position it below the navbar */
   

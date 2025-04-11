@@ -32,79 +32,53 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
                     <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdownToggles = document.querySelectorAll('.custom-dropdown-toggle');
 
-        document.addEventListener('DOMContentLoaded', () => {
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation(); // Prevent the event from propagating to the document's click listener
 
-        const dropdownToggles = document.querySelectorAll('.custom-dropdown-toggle');
+      // Get the parent <li> of the clicked element
+      const parentLi = toggle.closest('.nav-item');
 
+      // Check if the menu is already active
+      const isActive = parentLi.classList.contains('active');
 
-        dropdownToggles.forEach(toggle => {
+      // Close all dropdown menus and remove the active class
+      document.querySelectorAll('.custom-dropdown-menu.active').forEach(menu => {
+        menu.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-item.active').forEach(item => {
+        item.classList.remove('active');
+      });
 
-            toggle.addEventListener('click', (event) => {
+      // If the menu wasn't active, activate it
+      if (!isActive) {
+        const dropdownId = toggle.getAttribute('data-dropdown');
+        const dropdownMenu = document.getElementById(dropdownId);
+        if (dropdownMenu) {
+          dropdownMenu.classList.add('active');
+          parentLi.classList.add('active');
+        }
+      }
+    });
+  });
 
-            event.preventDefault();
-
-
-            // Get the parent <li> of the clicked element
-
-            const parentLi = toggle.closest('.nav-item');
-
-
-            // Close all dropdown menus and remove the active class
-
-            document.querySelectorAll('.custom-dropdown-menu.active').forEach(menu => {
-
-                menu.classList.remove('active');
-
-            });
-
-            document.querySelectorAll('.nav-item.active').forEach(item => {
-
-                item.classList.remove('active');
-
-            });
-
-
-            // Activate the dropdown menu and add the active class to the <li>
-
-            const dropdownId = toggle.getAttribute('data-dropdown');
-
-            const dropdownMenu = document.getElementById(dropdownId);
-
-            dropdownMenu.classList.toggle('active');
-
-            parentLi.classList.toggle('active');
-
-            });
-
-        });
-
-
-        // Close dropdowns when clicking outside
-
-        document.addEventListener('click', (event) => {
-
-            if (!event.target.closest('.custom-dropdown-toggle') && !event.target.closest('.custom-dropdown-menu')) {
-
-            document.querySelectorAll('.custom-dropdown-menu.active').forEach(menu => {
-
-                menu.classList.remove('active');
-
-            });
-
-            document.querySelectorAll('.nav-item.active').forEach(item => {
-
-                item.classList.remove('active');
-
-            });
-
-            }
-
-        });
-
-        });
-
-        </script>
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.custom-dropdown-toggle') && !event.target.closest('.custom-dropdown-menu')) {
+      document.querySelectorAll('.custom-dropdown-menu.active').forEach(menu => {
+        menu.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-item.active').forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+  });
+});
+</script>
         <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>    
         {% endblock %}
     </body>

@@ -14,7 +14,7 @@ h1, h2 {
     color: #00437a;
 }
 
-.logo {
+nav .logo {
     width: 120px;
     height: auto;
 }
@@ -147,4 +147,16 @@ ul{
   
     position: relative; /* Nécessaire pour positionner le triangle par rapport au <li> */
   
+  }
+
+  #presentation{
+    width: 100%;
+    height: 300px;
+  }
+
+  .presentation-text{
+    color: white;
+    width: 25%;
+    font-size: 2rem;
+    margin-left: 80px;
   }

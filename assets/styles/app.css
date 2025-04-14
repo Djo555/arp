@@ -25,12 +25,20 @@ a.nav-link{
 
 }
 
-a.nav-link.active{
+.nav-link:visited {
+  color: #00437a !important;
+}
+
+a.nav-link.active-link, a.nav-link.active-link:visited {
     color: #e7581a !important;
 }
 
-a.nav-link:hover{
+.nav-link:hover{
     color: #e7581a;
+}
+
+.nav-link:visited:hover {
+  color: #e7581a !important;
 }
 
 ul{
@@ -150,13 +158,63 @@ ul{
   }
 
   #presentation{
+    position: relative;
+    overflow: hidden;
     width: 100%;
     height: 300px;
   }
 
+
+
   .presentation-text{
-    color: white;
-    width: 25%;
-    font-size: 2rem;
-    margin-left: 80px;
+    color: #c08808;
+    width: 100%;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
   }
+
+  #presentation::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/Paris_banner1.png") center/cover;
+    opacity: 0;
+    transition: opacity 2.5s ease;
+    filter: brightness(1.3); /* makes the overlay version brighter */
+  }
+  
+  #presentation:hover::after {
+    opacity: 1;
+  }
+  
+  @keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.slide-left {
+    animation: slideFromLeft 0.8s ease-out forwards;
+    will-change: transform;
+    transform: translateZ(0);
+}
+/* Variantes avec délais */
+.slide-left-delay-1 {
+    animation: slideFromLeft 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.slide-left-delay-2 {
+    animation: slideFromLeft 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}

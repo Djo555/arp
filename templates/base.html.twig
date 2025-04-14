@@ -17,7 +17,7 @@
     </head>
     <body>
     
-    {%  include "base/header.html.twig" %}
+    {{ render(controller('App\\Controller\\HeaderController::index')) }}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
             <div class="alert alert-{{ label == 'success' ? 'success' : 'warning' }} alert-dismissible fade show text-center w-50 mx-auto my-2" role="alert">

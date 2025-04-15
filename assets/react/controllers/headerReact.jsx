@@ -131,9 +131,9 @@ const Header = () => {
                 className="custom-dropdown-menu justify-content-between flex-row active"
                 id={item.dropdownId}
               >
+                <ul className="col"></ul>
                 {item.dropdownItems.map((column, colIndex) => (
-                  <div key={colIndex} className="col">
-                    <ul>
+                  <ul key={colIndex} className="col">
                       {column.map((dropItem, itemIndex) => (
                         <li key={itemIndex}>
                           <a className="dropdown-item" href={dropItem.link}>
@@ -142,8 +142,8 @@ const Header = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
                 ))}
+                <ul className="col"></ul>
               </ul>
             )
         )}

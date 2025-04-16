@@ -1,57 +1,55 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Header = () => {
+const Header = ({routes}) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const dropdownRef = useRef(null);
 
   const menuItems = [
-    { label: "ACCUEIL", link: "/" },
-    { label: "LE CABINET", link: "#" },
+    { label: "ACCUEIL", link:routes.accueil },
+    { label: "LE CABINET", link:routes.cabinet },
     {
       label: "PARTICULIERS",
-      link: "#",
       isDropdown: true,
       dropdownId: "dropdown1",
       dropdownItems: [
         [
-          { label: "Divorce", link: "#" },
-          { label: "Garde d'enfant", link: "#" },
-          { label: "Pension alimentaire", link: "#" },
+          { label: "Divorce conflictuel", link:routes.divorce},
+          { label: "Garde d’enfant", link:routes.garde },
+          { label: "Pension alimentaire", link:routes.pension },
         ],
         [
-          { label: "Droit du travail", link: "#" },
-          { label: "Enquête de moralité", link: "#" },
-          { label: "Enquête de solvabilité", link: "#" },
+          { label: "Violations du droit du travail", link:routes.travail },
+          { label: "Enquête de moralité", link:routes.morale },
+          { label: "Enquête de solvabilité", link:routes.solvable },
         ],
-        [{ label: "Recherches de personne disparue", link: "#" }],
+        [{ label: "Personnes disparues ou introuvables", link:routes.disparue }],
       ],
     },
     {
       label: "ENTREPRISES",
-      link: "#",
       isDropdown: true,
       dropdownId: "dropdown2",
       dropdownItems: [
         [
-          { label: "Enquête de solvabilité", link: "#" },
-          { label: "Enquête de moralité", link: "#" },
-          { label: "Concurrence déloyale", link: "#" },
+          { label: "Analyse des antécédents", link:routes.antecedent },
+          { label: "Suspicion d’arrêt maladie abusif", link:routes.maladie },
+          { label: "Détection de concurrence déloyale", link:routes.concurrence },
         ],
         [
-          { label: "Surveillance du personnel", link: "#" },
-          { label: "Vol en interne", link: "#" },
-          { label: "Arrêt maladie abusif", link: "#" },
+          { label: "Suspicion du personnel", link:routes.personnel },
+          { label: "Détection des vols internes", link:routes.vols},
+          { label: "Opérations de client mystère", link:routes.mystere},
         ],
         [
-          { label: "Due diligence", link: "#" },
-          { label: "Recherche de débiteurs", link: "#" },
+          { label: "Protection contre l’espionnage industriel", link:routes.espion},
+          { label: "Conseils en sécurité", link:routes.securite},
         ],
       ],
     },
-    { label: "TARIFS", link: "#" },
-    { label: "CONTACTS", link: "#" },
-    { label: "ARTICLES", link: "#" },
+    { label: "TARIFS", link:routes.tarif },
+    { label: "CONTACTS", link:routes.contact },
+    { label: "ARTICLES", link:routes.article },
   ];
 
   useEffect(() => {

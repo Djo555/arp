@@ -18,7 +18,7 @@ final class HeaderController extends AbstractController
     public function __construct(
         private UrlGeneratorInterface $urlGenerator
     ) {}
-    
+
     #[Route('/header', name: 'app_header')]
 
     public function index(): Response
@@ -49,7 +49,7 @@ final class HeaderController extends AbstractController
 
             ],
 
-            'ENTREPRISES' => [
+            'entreprises' => [
 
                 'antecedent' => $this->generateUrl('app_antecedent'),
 
@@ -69,11 +69,11 @@ final class HeaderController extends AbstractController
 
             ],
 
-            'TARIFS' => $this->generateUrl('app_tarif'),
+            'tarif' => $this->generateUrl('app_tarif'),
 
-            'CONTACTS' => $this->generateUrl('app_contact'),
+            'contact' => $this->generateUrl('app_contact'),
 
-            'ARTICLES' => $this->generateUrl('app_article'),
+            'article' => $this->generateUrl('app_article'),
 
         ];
 

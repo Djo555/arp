@@ -14,16 +14,16 @@ const Header = ({routes}) => {
       dropdownId: "dropdown1",
       dropdownItems: [
         [
-          { label: "Divorce conflictuel", link:routes.divorce},
-          { label: "Garde d’enfant", link:routes.garde },
-          { label: "Pension alimentaire", link:routes.pension },
+          { label: "Divorce conflictuel", link:routes.particuliers.divorce},
+          { label: "Garde d’enfant", link:routes.particuliers.garde },
+          { label: "Pension alimentaire", link:routes.particuliers.pension },
         ],
         [
-          { label: "Violations du droit du travail", link:routes.travail },
-          { label: "Enquête de moralité", link:routes.morale },
-          { label: "Enquête de solvabilité", link:routes.solvable },
+          { label: "Violations du droit du travail", link:routes.particuliers.travail },
+          { label: "Enquête de moralité", link:routes.particuliers.morale },
+          { label: "Enquête de solvabilité", link:routes.particuliers.solvable },
         ],
-        [{ label: "Personnes disparues ou introuvables", link:routes.disparue }],
+        [{ label: "Personnes disparues ou introuvables", link:routes.particuliers.disparue }],
       ],
     },
     {
@@ -32,18 +32,18 @@ const Header = ({routes}) => {
       dropdownId: "dropdown2",
       dropdownItems: [
         [
-          { label: "Analyse des antécédents", link:routes.antecedent },
-          { label: "Suspicion d’arrêt maladie abusif", link:routes.maladie },
-          { label: "Détection de concurrence déloyale", link:routes.concurrence },
+          { label: "Analyse des antécédents", link:routes.entreprises.antecedent },
+          { label: "Suspicion d’arrêt maladie abusif", link:routes.entreprises.maladie },
+          { label: "Détection de concurrence déloyale", link:routes.entreprises.concurrence },
         ],
         [
-          { label: "Suspicion du personnel", link:routes.personnel },
-          { label: "Détection des vols internes", link:routes.vols},
-          { label: "Opérations de client mystère", link:routes.mystere},
+          { label: "Suspicion du personnel", link:routes.entreprises.personnel },
+          { label: "Détection des vols internes", link:routes.entreprises.vols},
+          { label: "Opérations de client mystère", link:routes.entreprises.mystere},
         ],
         [
-          { label: "Protection contre l’espionnage industriel", link:routes.espion},
-          { label: "Conseils en sécurité", link:routes.securite},
+          { label: "Protection contre l’espionnage industriel", link:routes.entreprises.espion},
+          { label: "Conseils en sécurité", link:routes.entreprises.securite},
         ],
       ],
     },
@@ -51,6 +51,13 @@ const Header = ({routes}) => {
     { label: "CONTACTS", link:routes.contact },
     { label: "ARTICLES", link:routes.article },
   ];
+
+  const isDropdownItemActive = (item) => {
+    if (!item.isDropdown) return false;
+    return item.dropdownItems.some(column => 
+      column.some(dropItem => dropItem.link === currentPath)
+    );
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -110,7 +117,7 @@ const Header = ({routes}) => {
                       ? String(activeDropdown === item.dropdownId)
                       : undefined
                   }
-                  style={currentPath === item.link ? { color: "#FF6B00" } : {}}
+                  style={(currentPath === item.link || isDropdownItemActive(item)) ? { color: "#FF6B00" } : {}}
                 >
                   {item.label}
                 </a>

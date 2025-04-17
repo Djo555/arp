@@ -218,3 +218,14 @@ ul{
     animation: slideFromLeft 0.8s ease-out 0.4s forwards;
     opacity: 0;
 }
+
+.titre-description{
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.txt-description {
+  width: 90%;
+  margin-bottom: 20px;
+
+}

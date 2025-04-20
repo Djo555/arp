@@ -229,3 +229,60 @@ ul{
   margin-bottom: 20px;
 
 }
+
+.img-description{
+  height: auto;
+  width: 100%;
+}
+
+@media (max-width: 575.98px) { #right{align-items: center !important;} }
+
+#description {
+  width: 95%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+#services{
+  background-color: #00437adf;
+  width: 95%;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+
+.titre-services {
+  font-weight: bold;
+}
+
+.txt-services{
+
+}
+
+.img-services{
+  width: 125px;
+  height: auto;
+}
+
+.card-services{
+  border-radius: 10px;
+  background-color: white;
+  padding: 20px;
+  margin: 50px;
+  height: 350px;
+  min-width: 300px;
+}
+
+.link-services{
+  color: #e7581a;
+}
+
+#services a{
+  text-decoration: none;
+}
+
+.title-services{
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
+  font-weight: bold;
+}

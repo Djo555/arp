@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Real-time Chat{% endblock %}
+{% block title %}Chat privé{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -36,8 +36,8 @@
 
 {% block body %}
     <div class="chat-container">
-        <h1>Real-time Chat</h1>
-        
+        <h1>Chat privé - Room {{ roomId }}</h1>
+       
         <div class="messages" id="messages">
             {% for message in messages %}
                 <div class="message">
@@ -49,9 +49,9 @@
         </div>
 
         <div class="message-form">
-            <input type="text" id="username" placeholder="Your name" class="message-input">
-            <input type="text" id="message" placeholder="Type your message..." class="message-input">
-            <button onclick="sendMessage()">Send</button>
+            <input type="text" id="username" placeholder="Votre nom" class="message-input">
+            <input type="text" id="message" placeholder="Votre message..." class="message-input">
+            <button onclick="sendMessage()">Envoyer</button>
         </div>
     </div>
 {% endblock %}
@@ -59,9 +59,11 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        // Connect to Mercure hub
-        const eventSource = new EventSource("{{ mercure('chat')|escape('js') }}");
-        
+        // Connexion au topic privé Mercure pour cette room
+        const url = new URL("{{ mercure_public_url }}/.well-known/mercure");
+        url.searchParams.append('topic', '/chat/{{ roomId }}');
+        const eventSource = new EventSource(url, { withCredentials: true });
+
         eventSource.onmessage = event => {
             const message = JSON.parse(event.data);
             appendMessage(message);
@@ -85,11 +87,11 @@
             const sender = document.getElementById('username').value;
 
             if (!content || !sender) {
-                alert('Please fill in both fields');
+                alert('Veuillez remplir les deux champs');
                 return;
             }
 
-            fetch('/chat/send', {
+            fetch('/chat/send/{{ roomId }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -71,41 +71,74 @@ public function newRoom(Request $request, EntityManagerInterface $entityManager)
 ()]);
 }
 
-    #[Route('/chat/send/{roomId}', name: 'chat_send', methods: ['POST'])]
-    public function send(
-        int $roomId,
-        Request $request,
-        EntityManagerInterface $entityManager,
-        HubInterface $hub
-    ): JsonResponse {
-        $data = json_decode($request->getContent(), true);
+#[Route('/chat/send/{roomId}', name: 'chat_send', methods: ['POST'])]
 
-        $message = new Message();
-        $message->setContent($data['content']);
-        $message->setSender($data['sender']);
-        $message->setTimestamp(new \DateTime());
-        $message->setRoomId($roomId);
+public function send(
 
-        $entityManager->persist($message);
-        $entityManager->flush();
+    int $roomId,
 
-        // Publie sur le topic privé Mercure
-        $update = new Update(
-            "/chat/{$roomId}",
-            json_encode([
-                'id' => $message->getId(),
-                'content' => $message->getContent(),
-                'sender' => $message->getSender(),
-                'timestamp' => $message->getTimestamp()->format('Y-m-d H:i:s')
-            ]),
-            true // privé
-        );
+    Request $request,
 
-        $hub->publish($update);
+    EntityManagerInterface $entityManager,
 
-        return $this->json([
-            'status' => 'success',
-            'message' => 'Message sent successfully'
-        ]);
+    HubInterface $hub
+
+): Response {
+
+    $content = $request->request->get('message');
+
+    $sender = $request->request->get('username');
+
+
+    if (!$content || !$sender) {
+
+        return $this->redirectToRoute('chat_private', ['roomId' => $roomId]);
+
     }
+
+
+    $message = new Message();
+
+    $message->setContent($content);
+
+    $message->setSender($sender);
+
+    $message->setTimestamp(new \DateTime());
+
+    $message->setRoomId($roomId);
+
+
+    $entityManager->persist($message);
+
+    $entityManager->flush();
+
+
+    $update = new Update(
+
+        "/chat/{$roomId}",
+
+        json_encode([
+
+            'id' => $message->getId(),
+
+            'content' => $message->getContent(),
+
+            'sender' => $message->getSender(),
+
+            'timestamp' => $message->getTimestamp()->format('Y-m-d H:i:s')
+
+        ]),
+
+        true
+
+    );
+
+    $hub->publish($update);
+
+
+    // Refresh the chat page
+
+    return $this->redirectToRoute('chat_private', ['roomId' => $roomId]);
+
+}
 }

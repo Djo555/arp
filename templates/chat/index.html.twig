@@ -48,18 +48,18 @@
             {% endfor %}
         </div>
 
-        <div class="message-form">
-            <input type="text" id="username" placeholder="Votre nom" class="message-input">
-            <input type="text" id="message" placeholder="Votre message..." class="message-input">
-            <button onclick="sendMessage()">Envoyer</button>
-        </div>
+        <form class="message-form" method="post" action="{{ path('chat_send', {roomId: roomId}) }}">
+            <input type="text" name="username" id="username" placeholder="Votre nom" class="message-input" required>
+            <input type="text" name="message" id="message" placeholder="Votre message..." class="message-input" required>
+            <button type="submit">Envoyer</button>
+        </form>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-        // Connexion au topic privé Mercure pour cette room
+        // Connexion au topic privé Mercure pour cette room (pour temps réel)
         const url = new URL("{{ mercure_public_url }}/.well-known/mercure");
         url.searchParams.append('topic', '/chat/{{ roomId }}');
         const eventSource = new EventSource(url, { withCredentials: true });
@@ -80,29 +80,6 @@
             `;
             messagesDiv.appendChild(messageElement);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function sendMessage() {
-            const content = document.getElementById('message').value;
-            const sender = document.getElementById('username').value;
-
-            if (!content || !sender) {
-                alert('Veuillez remplir les deux champs');
-                return;
-            }
-
-            fetch('/chat/send/{{ roomId }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    content: content,
-                    sender: sender
-                })
-            });
-
-            document.getElementById('message').value = '';
         }
     </script>
 {% endblock %}
